@@ -5,4 +5,5 @@ sudo apt-get -y install fish
 # setup oh my fish
 curl -L https://get.oh-my.fish | fish
 sudo apt install net-tools
+sudo apt install build-essential
 

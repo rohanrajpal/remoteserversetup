@@ -1,8 +1,8 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.27"
+      source = "hashicorp/aws"
+      # version = "~> 3.27"
     }
   }
 
@@ -15,11 +15,10 @@ provider "aws" {
 }
 
 
-
 resource "aws_instance" "app_server" {
   count = var.instance_count
   # ami             = "ami-09e07ab949e4de7ef" chirag
-  ami             = "ami-067588e1576716304"
+  ami             = "ami-0d3a99095533ca7f0"
   instance_type   = "t2.micro"
   security_groups = ["launch-wizard-1"]
 
@@ -28,11 +27,11 @@ resource "aws_instance" "app_server" {
   }
 }
 
-resource "aws_eip" "lb" {
-  count    = var.instance_count
-  instance = aws_instance.app_server[count.index].id
-  vpc      = true
-  tags = {
-    "Name" = "ElasticIP-${count.index + 1}"
-  }
-}
+# resource "aws_eip" "lb" {
+#   count    = var.instance_count
+#   instance = aws_instance.app_server[count.index].id
+#   vpc      = true
+#   tags = {
+#     "Name" = "ElasticIP-${count.index + 1}"
+#   }
+# }
